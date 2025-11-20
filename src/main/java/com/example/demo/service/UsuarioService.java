@@ -40,9 +40,12 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario getUsuarioById(Long id) {
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Usuário com ID " + id + " não encontrado."));
+    public Optional<Usuario> getUsuarioById(Long id) {
+        return usuarioRepository.findById(id);
+    }
+
+    public Optional<Usuario> getUsuarioByUsername(String username) {
+        return usuarioRepository.findByUsername(username);
     }
 
     public List<Usuario> listUsurios() {
@@ -50,7 +53,8 @@ public class UsuarioService {
     }
 
     public Usuario editUsuario(Long id, String username, String email, String password) {
-        Usuario usuario = getUsuarioById(id);
+        Usuario usuario = getUsuarioById(id)
+                .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
 
         if (!usuario.getUsername().equals(username) && usuarioRepository.existsByUsername(username)) {
             throw new ExistsUsernameException("Este username já existe! Por favor, escolha outro.");
@@ -62,6 +66,7 @@ public class UsuarioService {
 
         usuario.setUsername(username);
         usuario.setEmail(email);
+
         if (password != null && !password.isEmpty()) {
             String encodedPassword = passwordEncoder.encode(password);
             usuario.setPassword(encodedPassword);
@@ -71,7 +76,9 @@ public class UsuarioService {
     }
 
     public void deleteUsuario(Long id) {
-        Usuario usuario = getUsuarioById(id);
+        Usuario usuario = getUsuarioById(id)
+                .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+
         usuarioRepository.delete(usuario);
     }
 }
