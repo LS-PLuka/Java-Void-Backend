@@ -5,30 +5,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "marcas")
-public class Marca {
+@Table(name = "produtos")
+public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private String description;
+    private double price;
 
-    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
-    private List<Produto> produtos;
+    @ManyToOne
+    @JoinColumn(name = "marca_id", nullable = false)
+    private Marca marca;
 
-    public Marca(String name, String description) {
+    public Produto(String name, double price, Marca marca) {
         this.name = name;
-        this.description = description;
+        this.price = price;
+        this.marca = marca;
     }
 }
