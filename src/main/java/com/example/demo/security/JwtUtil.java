@@ -5,11 +5,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 
 public class JwtUtil {
 
-    private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final String SECRET = "N2JmNzMzZDI1NzA0NmU1YmRkYzE3MjI5OTg0ZjFlMzE=";
+    private static final Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(SECRET));
+
     private static final long EXPIRATION_TIME = 86400000;
 
     public static String generateToken(String username) {
@@ -32,9 +35,9 @@ public class JwtUtil {
     public static boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token);
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             return false;
