@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.exceptions.ExistsEmailException;
-import com.example.demo.exceptions.ExistsUsernameException;
-import com.example.demo.exceptions.UserNotFoundException;
+import com.example.demo.exceptions.userExceptions.ExistsEmailException;
+import com.example.demo.exceptions.userExceptions.ExistsUsernameException;
+import com.example.demo.exceptions.userExceptions.UserNotFoundException;
 import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuarioRepository;
 import org.junit.jupiter.api.Test;

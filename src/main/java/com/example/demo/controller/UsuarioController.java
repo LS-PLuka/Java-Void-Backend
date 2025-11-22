@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.EditRequest;
-import com.example.demo.exceptions.UserNotFoundException;
+import com.example.demo.exceptions.userExceptions.UserNotFoundException;
 import com.example.demo.model.Usuario;
 import com.example.demo.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
