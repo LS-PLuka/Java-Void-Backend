@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class GlobalExceptionsHandler {
+public class UserExceptionsHandler {
 
     @ExceptionHandler(ExistsUsernameException.class)
     public ResponseEntity<String> handleUser(ExistsUsernameException e) {

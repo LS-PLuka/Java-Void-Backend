@@ -2,15 +2,15 @@ package com.example.demo.exceptions.marcaExceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@ControllerAdvice
-public class GlobalExceptionHandler {
+@RestControllerAdvice
+public class MarcaExceptionHandler {
 
     @ExceptionHandler(MarcaNotFoundException.class)
     public ResponseEntity<Object> handleMarcaNotFoundException(MarcaNotFoundException ex) {
