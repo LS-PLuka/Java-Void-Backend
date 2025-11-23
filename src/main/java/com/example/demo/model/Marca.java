@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Marca {
     private String description;
 
     @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("marca")
     private List<Produto> produtos;
 
     public Marca(String name, String description) {

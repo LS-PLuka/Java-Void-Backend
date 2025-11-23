@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "marca_id", nullable = false)
+    @JsonIgnoreProperties("produtos")
     private Marca marca;
 
     public Produto(String name, double price, Marca marca) {
