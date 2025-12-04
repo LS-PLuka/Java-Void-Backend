@@ -64,4 +64,10 @@ public class CartaoService {
 
         return cartaoRepository.save(cartao);
     }
+
+    // DELETAR cartao
+    public void deleteCartao(Long id) {
+        Cartao cartao = getCartaoById(id);
+        cartaoRepository.delete(cartao);
+    }
 }
