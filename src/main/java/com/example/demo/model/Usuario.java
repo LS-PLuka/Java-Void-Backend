@@ -32,6 +32,9 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cartao> cartoes = new ArrayList<>();
 
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Sacola sacola;
+
     public Usuario(String username, String email, String password) {
         this.username = username;
         this.email = email;
